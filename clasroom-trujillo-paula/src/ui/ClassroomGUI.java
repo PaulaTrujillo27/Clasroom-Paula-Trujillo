@@ -23,6 +23,7 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
 import javafx.scene.control.ToggleGroup;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.FileChooser;
@@ -49,19 +50,19 @@ public class ClassroomGUI {
 	private TableView<UserAccount> showAccounts;
 
 	@FXML
-	private TableColumn<UserAccount, String> usernameColumn;
+	private TableColumn<UserAccount,String> usernameColumn;
 
 	@FXML
-	private TableColumn<UserAccount, String> genderColumn;
+	private TableColumn<UserAccount,String> genderColumn;
 
 	@FXML
-	private TableColumn<UserAccount, String> careerColumn;
+	private TableColumn<UserAccount,String> careerColumn;
 
 	@FXML
-	private TableColumn<UserAccount, String> birthdayColumn;
+	private TableColumn<UserAccount,String> birthdayColumn;
 
 	@FXML
-	private TableColumn<UserAccount, String> browseColumn;
+	private TableColumn<UserAccount,String> browseColumn;
 
 	//Register
 
@@ -128,38 +129,7 @@ public class ClassroomGUI {
 		Parent root = fxmlloader.load();
 		mainPanetext.getChildren().clear();
 		mainPanetext.setCenter(root);
-		browserChoice.getItems().addAll("Chrome","Moxila","Safari","Opera","Explore","Thor");
-	}
-
-	public void login() throws IOException {
-		if (loginVerification(txtUsername.getText(),txtPassword.getText())!=null) {			
-			UserAccount user = loginVerification(txtUsername.getText(),txtPassword.getText());
-			FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("account-list.fxml"));
-			fxmlloader.setController(this);
-			Parent root = fxmlloader.load(); 			
-			mainPanetext.getChildren().clear();
-			mainPanetext.getChildren().setAll(root);
-			txtUsername.setText("");
-			txtPassword.setText("");
-			initializableTableView();			
-			this.registerUsername.setText(user.getUsername());
-			this.showProfileImage.setImage(user.getPhoto());
-
-		}else {
-			Alert alert = new Alert(AlertType.WARNING);
-			alert.setTitle("Warning Dialog");
-			alert.setHeaderText("Error");
-			alert.setContentText("Invalid Username or Password");
-			alert.showAndWait();
-		}
-	}
-
-	public void SignIn(ActionEvent event) throws IOException {  	
-		FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("login.fxml"));
-		fxmlloader.setController(this);
-		Parent root = fxmlloader.load();
-		mainPanetext.getChildren().clear();
-		mainPanetext.setCenter(root);
+		browserChoice.getItems().addAll("Chrome","Moxilla","Safari","Opera","Explore","Thor");
 	}
 
 	public UserAccount loginVerification (String username, String password) {
@@ -186,6 +156,40 @@ public class ClassroomGUI {
 		}
 		return exists;
 	}
+	
+	public void login() throws IOException {
+		if (loginVerification(txtUsername.getText(),txtPassword.getText())!=null) {			
+			UserAccount user = loginVerification(txtUsername.getText(),txtPassword.getText());
+			FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("account-list.fxml"));
+			fxmlloader.setController(this);
+			Parent root = fxmlloader.load(); 			
+			mainPanetext.getChildren().clear();
+			mainPanetext.getChildren().setAll(root);
+			txtUsername.setText("");
+			txtPassword.setText("");
+			File f = new File(user.getPhoto());
+			Image img = new Image(f.toURI().toString());
+			initializableTableView();			
+			this.registerUsername.setText(user.getUsername());
+			this.showProfileImage.setImage(img);
+
+		}else {
+			Alert alert = new Alert(AlertType.WARNING);
+			alert.setTitle("Warning Dialog");
+			alert.setHeaderText("Error");
+			alert.setContentText("Invalid Username or Password");
+			alert.showAndWait();
+		}
+	}
+
+	public void SignIn(ActionEvent event) throws IOException {  	
+		FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("login.fxml"));
+		fxmlloader.setController(this);
+		Parent root = fxmlloader.load();
+		mainPanetext.getChildren().clear();
+		mainPanetext.setCenter(root);
+	}
+
 
 	@FXML
 	public void createAnAccount(ActionEvent event) throws IOException {
@@ -225,7 +229,7 @@ public class ClassroomGUI {
 	}
 
 	@FXML
-	public void LogOut(ActionEvent event) throws IOException {
+	public void logOut(ActionEvent event) throws IOException {
 		FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("login.fxml"));
 		fxmlloader.setController(this);
 		Parent root = fxmlloader.load();
@@ -234,7 +238,7 @@ public class ClassroomGUI {
 	}
 
 	@FXML
-	public void BrowsePhoto(ActionEvent event) {
+	public void browsePhoto(ActionEvent event) {
 		FileChooser filec = new FileChooser();		
 		filec.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("All Images","*.jpg","*.png","*.jpeg"));
 		File selectedFile = filec.showOpenDialog(null);
@@ -247,22 +251,17 @@ public class ClassroomGUI {
 
 
 
-		public void initializableTableView() {
-			ObservableList <UserAccount> accountsArray = FXCollections.observableArrayList(classroom.getAccounts());
-			showAccounts.setItems(accountsArray); 
-			usernameColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("username"));
-			genderColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("gender"));
-			careerColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("career"));
-			birthdayColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("birthday"));
-			browseColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("browse"));
-			showAccounts.setItems(accountsArray);
-		}
-
-
-
-
-
-
+	public void initializableTableView() {
+		ObservableList <UserAccount> accountsArray = FXCollections.observableArrayList(classroom.getAccounts());
+		showAccounts.setItems(accountsArray); 
+		usernameColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("username"));
+		genderColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("gender"));
+		careerColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("career"));
+		birthdayColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("birthday"));
+		browseColumn.setCellValueFactory(new PropertyValueFactory <UserAccount,String>("browse"));
+		showAccounts.setItems(accountsArray);
 	}
+
+}
 
 

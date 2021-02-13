@@ -1,14 +1,12 @@
 package model;
 
-import java.io.File;
 
-import javafx.scene.image.Image;
 
 public class UserAccount {
 	
 	private String username;
 	private String password;
-	private Image photo;
+	private String photo;
 	private String gender;
 	private String birthday;
 	private String career;
@@ -17,8 +15,7 @@ public class UserAccount {
 	public UserAccount(String user, String pass, String photo, String gender, String career, String birth, String browser) {
 		this.username=user;
 		this.password=pass;
-		File file = new File(photo);
-		this.photo= new Image(file.toURI().toString());
+		this.photo=photo;
 		this.gender=gender;
 		this.career=career;
 		this.birthday=birth;
@@ -29,7 +26,7 @@ public class UserAccount {
 		return username;
 	}
 
-	public Image getPhoto() {
+	public String getPhoto() {
 		return photo;
 	}
 	
