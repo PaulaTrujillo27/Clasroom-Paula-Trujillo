@@ -1,5 +1,36 @@
 package ui;
 
-public class Main {
+import javafx.application.Application;
+import javafx.fxml.FXMLLoader;
+import javafx.stage.Stage;
+import model.Classroom;
+import javafx.scene.*;
 
+
+public class Main extends Application{
+	
+    private ClassroomGUI classroomGUI;
+    private Classroom classroom;
+    
+    public Main () {
+    	classroom= new Classroom();
+    	classroomGUI= new ClassroomGUI(classroom);   
+    	
+    }
+    
+    public static void main(String[] args){
+        launch(args);
+    }
+
+    @Override
+    public void start(Stage primaryStage) throws Exception{
+    	FXMLLoader fxmlloader = new FXMLLoader(getClass().getResource("main-pane.fxml"));
+        fxmlloader.setController(classroomGUI);
+        Parent root = fxmlloader.load();
+        Scene scene = new Scene(root);
+        primaryStage.setScene(scene);
+        primaryStage.setTitle("ClassRoom");
+        primaryStage.show();
+        classroomGUI.showLogin();
+    }
 }

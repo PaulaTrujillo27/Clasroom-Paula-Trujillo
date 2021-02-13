@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.CheckBox?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.control.ToggleGroup?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.text.Font?>
+
+<Pane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="722.0" prefWidth="592.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <Label layoutX="226.0" layoutY="34.0" text="Join to Classroom">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="209.0" layoutY="82.0" prefHeight="31.0" prefWidth="200.0" text="Create Your Account ">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="140.0" text="Username:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="188.0" text="PassWord:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="82.0" layoutY="254.0" text="Profile Photo:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="108.0" layoutY="327.0" text="Gender:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="112.0" layoutY="392.0" text="Career:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="116.0" layoutY="499.0" text="Birthday:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="88.0" layoutY="562.0" text="Favorite Browser:">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </Label>
+      <TextField fx:id="registerUsername" layoutX="248.0" layoutY="138.0" />
+      <TextField fx:id="registerPhoto" layoutX="248.0" layoutY="252.0" />
+      <Button defaultButton="true" layoutX="135.0" layoutY="637.0" mnemonicParsing="false" onAction="#SignIn" prefHeight="39.0" prefWidth="83.0" text="Sign In" />
+      <Button defaultButton="true" layoutX="391.0" layoutY="637.0" mnemonicParsing="false" onAction="#createAnAccount" prefHeight="39.0" prefWidth="136.0" text="Create Account" />
+      <Button defaultButton="true" layoutX="459.0" layoutY="252.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="107.0" text="Browse" />
+      <RadioButton fx:id="genderMale" layoutX="223.0" layoutY="330.0" mnemonicParsing="false" text="Male">
+         <toggleGroup>
+            <ToggleGroup fx:id="genderGroup" />
+         </toggleGroup></RadioButton>
+      <RadioButton fx:id="genderFemale" layoutX="354.0" layoutY="330.0" mnemonicParsing="false" text="Female" toggleGroup="$genderGroup" />
+      <RadioButton fx:id="genderOther" layoutX="501.0" layoutY="330.0" mnemonicParsing="false" text="Other" toggleGroup="$genderGroup" />
+      <CheckBox fx:id="SystemCareer" layoutX="222.0" layoutY="395.0" mnemonicParsing="false" text="Software Engineering" />
+      <CheckBox fx:id="TelematicCareer" layoutX="222.0" layoutY="419.0" mnemonicParsing="false" text="Telematic Engineering" />
+      <CheckBox fx:id="IndustrialCareer" layoutX="223.0" layoutY="446.0" mnemonicParsing="false" text="Industrial Engineering" />
+      <DatePicker fx:id="registerBirthday" layoutX="263.0" layoutY="497.0" />
+      <ChoiceBox fx:id="browserChoice" layoutX="263.0" layoutY="560.0" prefHeight="31.0" prefWidth="217.0" />
+      <PasswordField fx:id="registerPassword" layoutX="248.0" layoutY="201.0" />
+   </children>
+</Pane>
